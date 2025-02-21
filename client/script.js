@@ -1,4 +1,5 @@
 import { io } from "socket.io-client"
+import "./styles.css";
 
 const socket = io("http://localhost:3000")
 
@@ -28,6 +29,7 @@ chatForm.addEventListener("submit", (e) => {
 function displayMessage(message) {
    const messageTag = document.createElement("p")
    messageTag.innerHTML = message
+   messageTag.classList.add("message")
    chatScreen.append(messageTag)
    
 }
