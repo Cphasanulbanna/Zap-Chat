@@ -1,8 +1,11 @@
 const { Server } = require("socket.io");
+const {instrument} = require("@socket.io/admin-ui") 
 
 const io = new Server(3000, {
     cors: {
-        origin: ["http://localhost:5500"], // frontend origin
+        origin: ["http://localhost:5500", "https://admin.socket.io"],
+        credentials: true
+        //  // frontend origin
     }
 })
 
@@ -31,3 +34,5 @@ io.on("connection", (socket) => {
     })
     
 })
+
+instrument(io, {auth: false})
