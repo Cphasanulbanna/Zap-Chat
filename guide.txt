@@ -1,2 +1,2 @@
 1. npm init -y
-2. 
+2. npm i socket-io
