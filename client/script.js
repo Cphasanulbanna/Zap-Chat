@@ -57,3 +57,12 @@ roomButton.addEventListener("click", () => {
         displayMessage(message)
     })
 })
+
+
+
+document.addEventListener("keydown", (e)=> {
+    if(e.target.matches("input")) return
+
+    if(e.key === 'c') socket.connect()
+    if(e.key === 'd') socket.disconnect()
+})
