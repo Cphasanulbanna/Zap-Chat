@@ -10,21 +10,24 @@ io.on("connection", (socket) => {
     console.log(socket.id); //random id generated for each person when connected
 
     socket.on("send-message", (message, room) => {
-        console.log(room, 'room');
-        
-        try {
             if(room==="") {
-                socket.broadcast.emit("receive-message", message); // sends message to all connected clients
+                const  msgObj = {message, time: new Date().toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true
+                  })}
+                socket.broadcast.emit("receive-message", msgObj);
+        // sends message to all connected clients
             }
             else {
                 socket.to(room).emit('receive-message', message);
             }
-        } catch (error) {
-            console.log(error, 'error');
-            
-        }
-    
-        
+    })
+
+    socket.on("join-room", (room, cb) => {
+        socket.join(room);
+        const formattedMsg = `Joined room:${room}, ${new Date()}`
+        cb(formattedMsg) 
     })
     
 })

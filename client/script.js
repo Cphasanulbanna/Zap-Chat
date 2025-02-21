@@ -22,6 +22,7 @@ const messageInput = document.getElementById("message-input")
 const chatScreen = document.querySelector(".screen")
 
 const roomInput = document.getElementById("room-input")
+const roomButton = document.getElementById("room-button")
 
 
 chatForm.addEventListener("submit", (e) => {
@@ -30,16 +31,29 @@ chatForm.addEventListener("submit", (e) => {
     const message = messageInput.value
     const room = roomInput.value
 
-    // if(message === "") return
+    if(message === "") return
 
     socket.emit("send-message", message, room)
     messageInput.value = ""
 })
 
-function displayMessage(message) {
+function displayMessage(msgObj) {
+    console.log({msgObj});
+    
    const messageTag = document.createElement("p")
-   messageTag.innerHTML = message
+   const timeTag =  document.createElement("p")
+   messageTag.innerHTML = msgObj.message
+   timeTag.innerHTML = msgObj.time
    messageTag.classList.add("message")
    chatScreen.append(messageTag)
+   chatScreen.append(timeTag)
 }
 
+
+
+roomButton.addEventListener("click", () => {
+    const room = roomInput.value
+    socket.emit('join-room', room, message => {
+        displayMessage(message)
+    })
+})
