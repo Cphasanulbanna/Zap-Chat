@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./script.js" type="module"></script>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
     <section style="padding: 30px;">
         <div  class="chat-box" style="width: 650px;">
             <div style="border: 2px solid #111; width: 100%; height: 500px" class="screen"></div>
-            <div style="margin-top: 20px; display:flex; flex-direction: column; justify-content: start; gap: 10px" class="control-box">
+            <form id="chat-form" style="margin-top: 20px; display:flex; flex-direction: column; justify-content: start; gap: 10px" class="control-box">
                 <div style="display: flex; align-items: center; gap: 10px" class="message-box">
                     <label for="message">Message</label>
-                    <input style="flex: auto;" type="text" for="message" id="message">
-                    <button  type="submit">Send</button>
+                    <input id="message-input" style="flex: auto;" type="text" name="message" id="message">
+                    <button id="message-btn"  type="submit">Send</button>
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px" class="room-box">
                     <label for="message">Room</label>
                     <input style="flex: auto;" type="text" for="message" id="message">
-                    <button type="submit">Join</button>
+                    <button>Join</button>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 </body>
